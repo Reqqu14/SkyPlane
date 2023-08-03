@@ -26,7 +26,13 @@ export default function Start() {
       </Text>
       <Text style={styles.slogan}>Fly anywhere.</Text>
       <View style={styles.button}>
-        <Button onPress={StartButtonPressed}>Start your journey</Button>
+        <Button
+          onPress={StartButtonPressed}
+          buttonStyle={styles.buttonCustomStyle}
+          buttonText={styles.customButtonText}
+        >
+          Start your journey
+        </Button>
       </View>
     </View>
   );
@@ -63,5 +69,18 @@ const styles = StyleSheet.create({
 
   button: {
     marginTop: 0.05 * height,
+  },
+
+  buttonCustomStyle: {
+    backgroundColor: "#009688",
+    padding: 20,
+    borderRadius: 60,
+    marginHorizontal: 25,
+  },
+
+  customButtonText: {
+    fontWeight: "500",
+    color: "white",
+    fontSize: 16,
   },
 });
