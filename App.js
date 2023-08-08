@@ -1,16 +1,18 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Start from "./screens/Start";
 import { useFonts } from "expo-font";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home";
-import Search from "./screens/Search";
+import Search from "./screens/SearchScreens/Search";
 import Wallet from "./screens/Wallet";
 import Profile from "./screens/Profile";
 import { Ionicons } from "@expo/vector-icons";
+import SearchResult from "./screens/SearchScreens/SearchResult";
+import FilghtDetails from "./screens/FilghtDetails";
+import Seats from "./screens/Seats";
+import PurchaseOverview from "./screens/PurchaseOverview";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -62,10 +64,41 @@ function StackNavigation() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        headerTintColor: "#7b7b7b",
+        headerTitleAlign: "center",
+        headerStyle: { backgroundColor: "#f3f2f2" },
       }}
     >
       <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="HomeStack" component={BottomTabNavigation} />
+      <Stack.Screen
+        name="SearchResult"
+        component={SearchResult}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="FlightDetails"
+        component={FilghtDetails}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="Seats"
+        component={Seats}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="PurchaseOverview"
+        component={PurchaseOverview}
+        options={{
+          headerShown: true,
+        }}
+      />
     </Stack.Navigator>
   );
 }

@@ -3,7 +3,6 @@ import React from "react";
 
 export default function CountriesView() {
   function DisplayItem({ item }) {
-    console.log(item.item);
     return (
       <View style={styles.container}>
         <Image

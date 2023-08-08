@@ -3,8 +3,15 @@ import React from "react";
 import Button from "../Button";
 import Input from "../Input";
 import HorizontalLineWithIcon from "../HorizontalLineWithIcon";
+import { useNavigation } from "@react-navigation/native";
+import GoNextButton from "../GoNextButton";
 
 export default function SearchCard() {
+  const navigation = useNavigation();
+  function GoToSearchResults() {
+    navigation.navigate("SearchResult");
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.buttonsContainer}>
@@ -60,14 +67,7 @@ export default function SearchCard() {
             IconContainerStyle={styles.IconContainer}
           />
         </View>
-        <View style={styles.searchButtonContainer}>
-          <Button
-            buttonStyle={styles.buttonCustomStyle}
-            buttonText={styles.customButtonText}
-          >
-            See 83 flights
-          </Button>
-        </View>
+        <GoNextButton onPress={GoToSearchResults}>See 83 flights</GoNextButton>
       </View>
     </View>
   );
@@ -124,21 +124,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-  },
-
-  searchButtonContainer: {
-    marginTop: 40,
-  },
-
-  buttonCustomStyle: {
-    backgroundColor: "black",
-    padding: 15,
-    borderRadius: 60,
-  },
-
-  customButtonText: {
-    fontWeight: "500",
-    color: "white",
-    fontSize: 16,
   },
 });
