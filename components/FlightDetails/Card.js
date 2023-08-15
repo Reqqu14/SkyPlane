@@ -3,9 +3,9 @@ import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import Button from "../Button";
 
-export default function Card() {
+export default function Card({ backgroundColor }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       <View style={styles.flightInformationContainer}>
         <View>
           <Text style={styles.topicText}>Outgoing flight</Text>
@@ -60,7 +60,6 @@ export default function Card() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f4f4f4",
     borderRadius: 16,
     padding: 20,
   },

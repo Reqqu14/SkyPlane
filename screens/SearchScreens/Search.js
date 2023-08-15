@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Topic from "../../components/Search/Topic";
+import Topic from "../../components/ReusableScreenComponents/Topic";
 import SearchCard from "../../components/Search/SearchCard";
 
 export default function Search() {
   return (
     <View>
-      <Topic />
+      <Topic>Search for flight</Topic>
       <SearchCard />
     </View>
   );

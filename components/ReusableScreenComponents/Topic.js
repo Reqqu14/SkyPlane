@@ -2,11 +2,11 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Topic() {
+export default function Topic({ children }) {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>Search for flight</Text>
+        <Text style={styles.text}>{children}</Text>
       </View>
       <View style={styles.iconContainer}>
         <Ionicons name="notifications-sharp" size={26} color="gray" />

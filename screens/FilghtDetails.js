@@ -38,7 +38,7 @@ export default function FilghtDetails() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Your selected flight</Text>
-      <Card />
+      <Card backgroundColor="#f4f4f4" />
       <View style={styles.buttonsContainer}>
         <Button
           buttonStyle={styles.buttonStyle}

@@ -13,6 +13,7 @@ import SearchResult from "./screens/SearchScreens/SearchResult";
 import FilghtDetails from "./screens/FilghtDetails";
 import Seats from "./screens/Seats";
 import PurchaseOverview from "./screens/PurchaseOverview";
+import TickedDetails from "./screens/TickedDetails";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -95,6 +96,13 @@ function StackNavigation() {
       <Stack.Screen
         name="PurchaseOverview"
         component={PurchaseOverview}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="TicketDetails"
+        component={TickedDetails}
         options={{
           headerShown: true,
         }}

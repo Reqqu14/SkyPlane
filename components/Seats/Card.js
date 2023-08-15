@@ -5,8 +5,6 @@ import { FlatList } from "react-native-gesture-handler";
 import Seat from "./Seat";
 
 export default function Card() {
-  const items = [1, 2, 3, 4];
-
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const data = {
@@ -176,12 +174,12 @@ export default function Card() {
       <View style={styles.seatsContainer}>
         <View style={styles.seats}>
           {data.item.left.map((row) => {
-            return <RenderSeatItem row={row} />;
+            return <RenderSeatItem row={row} key={row.id} />;
           })}
         </View>
         <View style={styles.seats}>
           {data.item.right.map((row) => {
-            return <RenderSeatItem row={row} />;
+            return <RenderSeatItem row={row} key={row.id} />;
           })}
         </View>
       </View>
