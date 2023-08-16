@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function Topic() {
+export default function Topic({ destination }) {
   return (
     <View>
-      <Text style={styles.topic}>LGW - BER</Text>
+      <Text style={styles.topic}>LGW - {destination}</Text>
     </View>
   );
 }

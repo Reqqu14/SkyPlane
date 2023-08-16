@@ -9,6 +9,7 @@ export default function Card({
   price,
   departureTime,
   centerTravelTime,
+  destination,
 }) {
   const navigation = useNavigation();
 
@@ -41,7 +42,7 @@ export default function Card({
             <Text style={styles.price}>$ {price}</Text>
           </View>
           <View>
-            <Text style={styles.detailsText}>LGW - BER</Text>
+            <Text style={styles.detailsText}>LGW - {destination}</Text>
           </View>
         </View>
         <View>

@@ -56,6 +56,7 @@ export default function DayList() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
+    height: 100,
   },
 
   itemContainer: {

@@ -40,9 +40,21 @@ function TopBarNavigation() {
       }}
     >
       <TopNavigation.Screen name="All" component={CountriesView} />
-      <TopNavigation.Screen name="Europe" component={CountriesView} />
-      <TopNavigation.Screen name="America" component={CountriesView} />
-      <TopNavigation.Screen name="Asia" component={CountriesView} />
+      <TopNavigation.Screen
+        name="Europe"
+        component={CountriesView}
+        initialParams={{ continent: "Europe" }}
+      />
+      <TopNavigation.Screen
+        name="America"
+        component={CountriesView}
+        initialParams={{ continent: "America" }}
+      />
+      <TopNavigation.Screen
+        name="Asia"
+        component={CountriesView}
+        initialParams={{ continent: "Asia" }}
+      />
     </TopNavigation.Navigator>
   );
 }

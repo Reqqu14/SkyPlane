@@ -14,6 +14,9 @@ import FilghtDetails from "./screens/FilghtDetails";
 import Seats from "./screens/Seats";
 import PurchaseOverview from "./screens/PurchaseOverview";
 import TickedDetails from "./screens/TickedDetails";
+import CityDetails from "./screens/CityDetails";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -73,6 +76,13 @@ function StackNavigation() {
       <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="HomeStack" component={BottomTabNavigation} />
       <Stack.Screen
+        name="CityDetails"
+        component={CityDetails}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
         name="SearchResult"
         component={SearchResult}
         options={{
@@ -118,9 +128,11 @@ export default function App() {
   });
 
   return (
-    <NavigationContainer>
-      <StackNavigation />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StackNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 }
 

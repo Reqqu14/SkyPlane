@@ -1,26 +1,38 @@
 import { StyleSheet, Text, View, FlatList, Image } from "react-native";
 import React from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
-export default function CountriesView() {
-  function DisplayItem({ item }) {
-    return (
-      <View style={styles.container}>
-        <Image
-          source={require("../../assets/images/london.jpeg")}
-          style={styles.image}
-        />
-        <Text style={styles.city}>London </Text>
-      </View>
-    );
+export default function CountriesView({ route }) {
+  const cities = useSelector((state) => {
+    return state.cityData.cities;
+  });
+
+  const navigation = useNavigation();
+
+  function goToCityDetails(id) {
+    navigation.navigate("CityDetails", { cityId: id });
   }
 
-  const zm = [1, 2, 3, 4];
+  const continent = route.params?.continent;
+
+  function DisplayItem({ city }) {
+    return continent == city.Continent || continent == undefined ? (
+      <View style={styles.container}>
+        <TouchableOpacity onPress={() => goToCityDetails(city.Id)}>
+          <Image source={city.Image} style={styles.image} />
+        </TouchableOpacity>
+        <Text style={styles.city}>{city.Name}</Text>
+      </View>
+    ) : null;
+  }
 
   return (
     <FlatList
-      data={zm}
-      keyExtractor={(item) => item}
-      renderItem={(item) => <DisplayItem item={item} />}
+      data={cities}
+      keyExtractor={(city) => city.Id}
+      renderItem={(city) => <DisplayItem city={city.item} />}
       numColumns={2}
     />
   );
@@ -31,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 35,
     alignItems: "center",
+    marginBottom: 25,
   },
   image: {
     width: 166,

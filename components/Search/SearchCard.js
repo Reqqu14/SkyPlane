@@ -9,7 +9,7 @@ import GoNextButton from "../GoNextButton";
 export default function SearchCard() {
   const navigation = useNavigation();
   function GoToSearchResults() {
-    navigation.navigate("SearchResult");
+    navigation.navigate("SearchResult", { airport: "BER" });
   }
 
   return (
