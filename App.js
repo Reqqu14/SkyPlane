@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home";
 import Search from "./screens/SearchScreens/Search";
 import Wallet from "./screens/Wallet";
-import Profile from "./screens/Profile";
+import Profile from "./screens/profile/Profile";
 import { Ionicons } from "@expo/vector-icons";
 import SearchResult from "./screens/SearchScreens/SearchResult";
 import FilghtDetails from "./screens/FilghtDetails";
@@ -17,6 +17,8 @@ import TickedDetails from "./screens/TickedDetails";
 import CityDetails from "./screens/CityDetails";
 import { Provider } from "react-redux";
 import { store } from "./store/redux/store";
+import AddProfileInformation from "./screens/profile/AddProfileInformation";
+import { StatusBar } from "expo-status-bar";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -117,6 +119,13 @@ function StackNavigation() {
           headerShown: true,
         }}
       />
+      <Stack.Screen
+        name="AddProfileInformations"
+        component={AddProfileInformation}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -129,6 +138,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
+      <StatusBar />
       <NavigationContainer>
         <StackNavigation />
       </NavigationContainer>

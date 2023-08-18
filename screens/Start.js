@@ -10,7 +10,8 @@ export default function Start() {
   const navigation = useNavigation();
 
   function StartButtonPressed() {
-    navigation.navigate("HomeStack");
+    //navigation.navigate("HomeStack");
+    navigation.navigate("AddProfileInformations");
   }
 
   return (
