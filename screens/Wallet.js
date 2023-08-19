@@ -1,18 +1,28 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topic from "../components/ReusableScreenComponents/Topic";
 import Card from "../components/FlightDetails/Card";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 export default function Wallet() {
   const navigation = useNavigation();
   const pastFlights = [1, 2, 3];
   const upcommingFlights = [1, 2, 3];
 
+  const [flightDetails, setFlightDetails] = useState({});
+  const flightData = useSelector((state) => {
+    return state.flightDetailsData.flightDetails;
+  });
+
   function goToTicketDetails() {
     navigation.navigate("TicketDetails");
   }
+
+  useEffect(() => {
+    setFlightDetails(flightData);
+  }, []);
 
   function FlightDetails() {
     return (
@@ -20,7 +30,14 @@ export default function Wallet() {
         style={styles.detailsContainer}
         onPress={goToTicketDetails}
       >
-        <Card />
+        <Card
+          price={flightDetails.price}
+          destination={flightDetails.destination}
+          airport={flightDetails.airport}
+          ticketType={flightDetails.ticketType}
+          ticketTypeStyle={flightData.ticketTypeStyle}
+          flightDate={flightData.flightDate}
+        />
       </TouchableOpacity>
     );
   }

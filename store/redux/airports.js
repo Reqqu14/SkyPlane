@@ -15,8 +15,22 @@ const airportSlice = createSlice({
       { label: "Pekin Airport", value: "PAI" },
       { label: "Tokyo Airport", value: "TAI" },
     ],
+    selectedAirport: {},
+    destinationAirport: {},
   },
-  reducers: {},
+  reducers: {
+    getAirportByCode: (state, action) => {
+      if (action.payload.type === "airport") {
+        state.selectedAirport = state.airports.find(
+          (x) => x.value === action.payload.code
+        );
+      } else if (action.payload.type === "destinationAirport") {
+        state.destinationAirport = state.airports.find(
+          (x) => x.value === action.payload.code
+        );
+      }
+    },
+  },
 });
-
+export const getAirportByCode = airportSlice.actions.getAirportByCode;
 export default airportSlice.reducer;

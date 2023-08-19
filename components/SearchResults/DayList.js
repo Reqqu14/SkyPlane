@@ -1,12 +1,68 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useRef, useState } from "react";
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { Entypo } from "@expo/vector-icons";
+import { current } from "@reduxjs/toolkit";
 
-export default function DayList() {
-  const days = [16, 17, 18, 19, 20, 21, 22, 23];
+export default function DayList({ setSelectedDay }) {
   const lastIndexToLoad = 5;
   const [arrowClicked, setArrowClicked] = useState(false);
+  const [days, setDays] = useState([]);
+
+  useState(() => {
+    renderDaysArray();
+  }, []);
+
+  useEffect(() => {
+    setSelectedDay(days[0]);
+  }, []);
+
+  function renderDaysArray() {
+    const today = new Date();
+    const newDays = [];
+
+    for (let i = 0; i < 10; i++) {
+      const currentDate = new Date(today);
+      currentDate.setDate(today.getDate() + i);
+      const day = {
+        day: currentDate.getDate(),
+        dayOfWeek: currentDate
+          .toLocaleString("en-US", {
+            weekday: "short",
+          })
+          .split(",")[0],
+        selected: i === 0 ? true : false,
+        fullDate: `${
+          currentDate
+            .toLocaleString("en-US", {
+              weekday: "long",
+            })
+            .split(",")[0]
+        }, ${currentDate.getDate()}th ${currentDate.toLocaleString("en-US", {
+          month: "long",
+        })}, ${currentDate.getFullYear()}`,
+      };
+      newDays.push(day);
+    }
+    setDays(newDays);
+  }
+
+  function selectDay(day) {
+    const updatedDays = days.map((d) => ({
+      ...d,
+      selected: d.day == day.day,
+    }));
+
+    setDays(updatedDays);
+    setSelectedDay(day);
+  }
 
   function expandAll() {
     setArrowClicked(true);
@@ -19,16 +75,25 @@ export default function DayList() {
     }
 
     return data.index < lastIndexToLoad ? (
-      <View style={styles.itemContainer}>
-        <Text style={styles.itemText}>F</Text>
-        <Text style={styles.itemText}>{data.item}</Text>
-      </View>
+      <TouchableOpacity
+        onPress={() => selectDay(data.item)}
+        style={[styles.itemContainer, data.item.selected && styles.selectedDay]}
+      >
+        <Text style={styles.itemText}>{data.item.dayOfWeek}</Text>
+        <Text style={styles.itemText}>{data.item.day}</Text>
+      </TouchableOpacity>
     ) : iconLoadedRef.current || arrowClicked ? (
       arrowClicked ? (
-        <View style={styles.itemContainer}>
-          <Text style={styles.itemText}>F</Text>
-          <Text style={styles.itemText}>{data.item}</Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => selectDay(data.item)}
+          style={[
+            styles.itemContainer,
+            data.item.selected && styles.selectedDay,
+          ]}
+        >
+          <Text style={styles.itemText}>{data.item.dayOfWeek}</Text>
+          <Text style={styles.itemText}>{data.item.day}</Text>
+        </TouchableOpacity>
       ) : null
     ) : (
       <Pressable style={styles.icon} onPress={expandAll}>
@@ -45,7 +110,7 @@ export default function DayList() {
     >
       <FlatList
         data={days}
-        keyExtractor={(item) => item}
+        keyExtractor={(item) => item.day}
         renderItem={(data) => <ListItem data={data} />}
         numColumns={10}
       />
@@ -66,6 +131,12 @@ const styles = StyleSheet.create({
     marginRight: 10,
     paddingHorizontal: 15,
     alignItems: "center",
+    minWidth: 60,
+  },
+
+  selectedDay: {
+    borderWidth: 1,
+    backgroundColor: "#e0dddd",
   },
 
   itemText: {

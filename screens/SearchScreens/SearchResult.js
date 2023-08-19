@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import IconButton from "../../components/IconButton";
 import Topic from "../../components/SearchResults/Topic";
@@ -7,11 +7,28 @@ import DayList from "../../components/SearchResults/DayList";
 import Card from "../../components/SearchResults/Card";
 import GoNextButton from "../../components/GoNextButton";
 import { ScrollView } from "react-native-gesture-handler";
+import { getData } from "../../store/asyncStorage/asyncStorage";
 
 export default function SearchResult({ route }) {
+  const { destinationAirport, cheapest, premium } = route.params;
+  const popular = premium - 3 * cheapest;
+  const extraDayPrices = {
+    Mon: { cheapest: 15, popular: 30, premium: 60 },
+    Tue: { cheapest: 12, popular: 28, premium: 55 },
+    Wed: { cheapest: 18, popular: 35, premium: 70 },
+    Thu: { cheapest: 14, popular: 32, premium: 65 },
+    Fri: { cheapest: 20, popular: 40, premium: 80 },
+    Sat: { cheapest: 10, popular: 25, premium: 50 },
+    Sun: { cheapest: 33, popular: 76, premium: 99 },
+  };
   const navigation = useNavigation();
-
-  const { airport } = route.params;
+  const [airport, setAirport] = useState("");
+  const [selectedDay, setSelectedDay] = useState({});
+  const [prices, setPrices] = useState({
+    cheapest: cheapest,
+    popular: popular,
+    premium: premium,
+  });
 
   function GoBack() {
     navigation.goBack();
@@ -35,35 +52,62 @@ export default function SearchResult({ route }) {
     });
   }, [navigation]);
 
+  useEffect(() => {
+    getAirportFromProfileData();
+  }, []);
+
+  async function getAirportFromProfileData() {
+    const profileData = await getData("profile");
+    const parsedData = JSON.parse(profileData);
+    setAirport(parsedData.airport);
+  }
+
+  function setSelectedDaysHandler(day) {
+    setSelectedDay(day);
+    const newPrices = extraDayPrices[day.dayOfWeek];
+    setPrices((current) => ({
+      ...current,
+      cheapest: cheapest + newPrices.cheapest,
+      popular: popular + newPrices.popular,
+      premium: premium + newPrices.premium,
+    }));
+  }
+
   return (
     <View style={styles.container}>
-      <Topic destination={airport} />
-      <DayList />
+      <Topic destination={destinationAirport} airport={airport} />
+      <DayList setSelectedDay={setSelectedDaysHandler} />
       <Text style={styles.text}>Recommended</Text>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Card
           topButtonText="Cheapest"
           topButtonStyle={styles.cheapestButtonStyle}
-          price="90"
+          price={prices.cheapest}
           departureTime="4h 20m"
           centerTravelTime="DUS 1h"
-          destination={airport}
+          destination={destinationAirport}
+          airport={airport}
+          flightDate={selectedDay}
         />
         <Card
           topButtonText="Popular"
           topButtonStyle={styles.popularButtonStyle}
-          price="185"
+          price={prices.popular}
           departureTime="1h 20m"
           centerTravelTime="-"
-          destination={airport}
+          destination={destinationAirport}
+          airport={airport}
+          flightDate={selectedDay}
         />
         <Card
           topButtonText="Premium"
           topButtonStyle={styles.premiumButtonStyle}
-          price="399"
+          price={prices.premium}
           departureTime="1h 5m"
           centerTravelTime="-"
-          destination={airport}
+          destination={destinationAirport}
+          airport={airport}
+          flightDate={selectedDay}
         />
       </ScrollView>
       <GoNextButton onPress={GoBack}>View all flights</GoNextButton>
@@ -74,7 +118,6 @@ export default function SearchResult({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
     padding: 20,
     paddingHorizontal: 30,
   },

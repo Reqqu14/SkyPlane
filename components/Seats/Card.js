@@ -156,7 +156,6 @@ export default function Card() {
   function selectSeat(item) {
     if (selectedSeats.includes(item.id)) {
       item.selected = false;
-      console.log(item);
       setSelectedSeats((prevSelectedSeats) => [
         ...prevSelectedSeats.filter((x) => x !== item.id),
       ]);

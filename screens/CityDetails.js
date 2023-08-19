@@ -16,7 +16,11 @@ export default function CityDetails({ route }) {
   }
 
   function goToNextPage() {
-    navigation.navigate("SearchResult", { airport: selectedCity.Airport });
+    navigation.navigate("SearchResult", {
+      destinationAirport: selectedCity.Airport,
+      cheapest: selectedCity.From,
+      premium: selectedCity.To,
+    });
   }
 
   useLayoutEffect(() => {
@@ -71,11 +75,11 @@ export default function CityDetails({ route }) {
         <View style={styles.detailRowContainer}>
           <View style={styles.detail}>
             <Text style={styles.detailHeader}>From</Text>
-            <Text style={styles.details}>{selectedCity.From}</Text>
+            <Text style={styles.details}>{selectedCity.From} $</Text>
           </View>
           <View style={styles.detail}>
             <Text style={styles.detailHeader}>To</Text>
-            <Text style={styles.details}>{selectedCity.To}</Text>
+            <Text style={styles.details}>{selectedCity.To} $</Text>
           </View>
         </View>
       </View>

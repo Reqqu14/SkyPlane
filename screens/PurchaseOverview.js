@@ -1,14 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import IconButton from "../components/IconButton";
 import Card from "../components/FlightDetails/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import PassengerDetails from "../components/PurchaseOverview/PassengerDetails";
 import GoNextButton from "../components/GoNextButton";
+import { useSelector } from "react-redux";
 
 export default function PurchaseOverview() {
   const navigation = useNavigation();
+  const [flightDetails, setFlightDetails] = useState({});
+  const flightData = useSelector((state) => {
+    return state.flightDetailsData.flightDetails;
+  });
 
   function goBack() {
     navigation.goBack();
@@ -36,10 +41,22 @@ export default function PurchaseOverview() {
     });
   });
 
+  useEffect(() => {
+    setFlightDetails(flightData);
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.detailsContainer}>
-        <Card backgroundColor="white" />
+        <Card
+          backgroundColor="white"
+          price={flightDetails.price}
+          destination={flightDetails.destination}
+          airport={flightDetails.airport}
+          ticketType={flightDetails.ticketType}
+          ticketTypeStyle={flightData.ticketTypeStyle}
+          flightDate={flightData.flightDate}
+        />
       </View>
       <View style={styles.detailsContainer}>
         <PassengerDetails />

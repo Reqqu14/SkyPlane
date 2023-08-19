@@ -1,16 +1,40 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Entypo } from "@expo/vector-icons";
+import { getAirportByCode } from "../../store/redux/airports";
 import Button from "../Button";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function Card({ backgroundColor }) {
+export default function Card({
+  backgroundColor,
+  price,
+  airport,
+  destination,
+  ticketType,
+  ticketTypeStyle,
+  flightDate,
+}) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAirportByCode({ code: airport, type: "airport" }));
+    dispatch(
+      getAirportByCode({ code: destination, type: "destinationAirport" })
+    );
+  }, []);
+
+  const airportdata = useSelector((state) => state.airportData.selectedAirport);
+  const destinationAirportData = useSelector(
+    (state) => state.airportData.destinationAirport
+  );
+
   return (
     <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       <View style={styles.flightInformationContainer}>
         <View>
           <Text style={styles.topicText}>Outgoing flight</Text>
           <Text style={styles.flightDestinationText}>
-            Friday, 16th September, 2023
+            {flightDate.fullDate}
           </Text>
         </View>
         <View>
@@ -19,12 +43,14 @@ export default function Card({ backgroundColor }) {
       </View>
       <View style={styles.airportContainer}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.airportFullText}>London Gatwick</Text>
-          <Text style={styles.airportShortText}>LGW</Text>
+          <Text style={styles.airportFullText}>{airportdata?.label}</Text>
+          <Text style={styles.airportShortText}>{airport}</Text>
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={styles.airportFullText}>Berlin Brendenburg</Text>
-          <Text style={styles.airportShortText}>BER</Text>
+          <Text style={styles.airportFullText}>
+            {destinationAirportData?.label}
+          </Text>
+          <Text style={styles.airportShortText}>{destination}</Text>
         </View>
       </View>
       <View style={styles.timeDetailsContainer}>
@@ -38,20 +64,23 @@ export default function Card({ backgroundColor }) {
           />
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={styles.timeText}>11:00 PM</Text>
+          <Text style={styles.timeText}>04:00 PM</Text>
         </View>
       </View>
       <View style={styles.footerContainer}>
         <View style={{ flex: 1 }}>
           <Button
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: ticketTypeStyle },
+            ]}
             buttonText={styles.customButtonText}
           >
-            BASIC
+            {ticketType}
           </Button>
         </View>
         <View style={styles.test}>
-          <Text style={styles.priceText}>$ 185</Text>
+          <Text style={styles.priceText}>{price} $</Text>
         </View>
       </View>
     </View>
@@ -131,7 +160,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#009688",
     padding: 3,
     borderRadius: 60,
-    width: 70,
+    width: 80,
   },
 
   customButtonText: {

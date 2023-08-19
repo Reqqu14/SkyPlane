@@ -10,11 +10,20 @@ export default function Card({
   departureTime,
   centerTravelTime,
   destination,
+  airport,
+  flightDate,
 }) {
   const navigation = useNavigation();
 
   function onPress() {
-    navigation.navigate("FlightDetails");
+    navigation.navigate("FlightDetails", {
+      price: price,
+      airport: airport,
+      destination: destination,
+      ticketType: topButtonText,
+      ticketTypeStyle: topButtonStyle.backgroundColor,
+      flightDate: flightDate,
+    });
   }
 
   return (
@@ -42,7 +51,9 @@ export default function Card({
             <Text style={styles.price}>$ {price}</Text>
           </View>
           <View>
-            <Text style={styles.detailsText}>LGW - {destination}</Text>
+            <Text style={styles.detailsText}>
+              {airport} - {destination}
+            </Text>
           </View>
         </View>
         <View>

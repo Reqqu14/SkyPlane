@@ -5,15 +5,37 @@ import IconButton from "../components/IconButton";
 import Card from "../components/FlightDetails/Card";
 import Button from "../components/Button";
 import GoNextButton from "../components/GoNextButton";
+import { useDispatch } from "react-redux";
+import { setDetails } from "../store/redux/flightDetails";
 
-export default function FilghtDetails() {
+export default function FilghtDetails({ route }) {
   const navigation = useNavigation();
+  const {
+    price,
+    airport,
+    destination,
+    ticketType,
+    ticketTypeStyle,
+    flightDate,
+  } = route.params;
+
+  const dispatch = useDispatch();
 
   function goBack() {
     navigation.goBack();
   }
 
   function goToNextPage() {
+    dispatch(
+      setDetails({
+        price: price,
+        airport: airport,
+        destination: destination,
+        flightDate: flightDate,
+        ticketType: ticketType,
+        ticketTypeStyle: ticketTypeStyle,
+      })
+    );
     navigation.navigate("Seats");
   }
 
@@ -31,14 +53,22 @@ export default function FilghtDetails() {
           />
         );
       },
-      headerTitle: "LGW - BER",
+      headerTitle: `${airport} - ${destination}`,
     });
   });
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Your selected flight</Text>
-      <Card backgroundColor="#f4f4f4" />
+      <Card
+        backgroundColor="#f4f4f4"
+        price={price}
+        destination={destination}
+        airport={airport}
+        ticketType={ticketType}
+        ticketTypeStyle={ticketTypeStyle}
+        flightDate={flightDate}
+      />
       <View style={styles.buttonsContainer}>
         <Button
           buttonStyle={styles.buttonStyle}

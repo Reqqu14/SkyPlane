@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 export default function Seat({ style, seatSelected, id }) {
-  console.log(seatSelected);
   return (
     <View style={[styles.seat, style]}>
       {seatSelected ? <Text style={styles.selectedSeat}>{id}</Text> : null}

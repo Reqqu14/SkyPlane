@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function Topic({ destination }) {
+export default function Topic({ destination, airport }) {
   return (
     <View>
-      <Text style={styles.topic}>LGW - {destination}</Text>
+      <Text style={styles.topic}>
+        {airport} - {destination}
+      </Text>
     </View>
   );
 }
