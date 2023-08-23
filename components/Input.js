@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
+import { HEIGHT } from "../constants/constants";
 
 export default function Input({
   label,
@@ -33,12 +34,12 @@ export default function Input({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 11,
+    fontSize: HEIGHT * 0.014,
     color: "#7b7b7b",
-    marginBottom: 10,
+    marginBottom: HEIGHT * 0.013,
   },
   text: {
-    fontSize: 16,
+    fontSize: HEIGHT * 0.021,
     color: "#222222",
     fontWeight: "500",
     marginBottom: 10,

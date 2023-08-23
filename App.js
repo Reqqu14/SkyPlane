@@ -19,6 +19,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/redux/store";
 import AddProfileInformation from "./screens/profile/AddProfileInformation";
 import { StatusBar } from "expo-status-bar";
+import { WIDTH } from "./constants/constants";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -27,7 +28,7 @@ function BottomTabNavigation() {
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ size, focused }) => {
+        tabBarIcon: ({ focused }) => {
           let iconName;
           let color;
           if (route.name === "Home") {
@@ -47,7 +48,9 @@ function BottomTabNavigation() {
             color = focused ? "black" : "grey";
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return (
+            <Ionicons name={iconName} size={WIDTH * 0.065} color={color} />
+          );
         },
 
         headerShown: false,

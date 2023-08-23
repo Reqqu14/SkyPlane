@@ -1,10 +1,8 @@
-import { Image, StyleSheet, Text, View, Dimensions } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
-
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
+import { HEIGHT, WIDTH } from "../constants/constants";
 
 export default function Start() {
   const navigation = useNavigation();
@@ -46,15 +44,15 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   image: {
-    width: 0.85 * width,
-    height: 0.55 * height,
+    width: HEIGHT < 650 ? 0.7 * WIDTH : 0.85 * WIDTH,
+    height: 0.55 * HEIGHT,
   },
 
   title: {
-    fontSize: 40,
+    fontSize: HEIGHT * 0.05,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 0.07 * height,
+    marginTop: 0.07 * HEIGHT,
     letterSpacing: 2,
   },
 
@@ -64,19 +62,19 @@ const styles = StyleSheet.create({
 
   slogan: {
     textAlign: "center",
-    marginTop: 0.03 * height,
+    marginTop: 0.03 * HEIGHT,
     fontSize: 18,
   },
 
   button: {
-    marginTop: 0.05 * height,
+    marginTop: 0.05 * HEIGHT,
   },
 
   buttonCustomStyle: {
     backgroundColor: "#009688",
-    padding: 20,
+    padding: HEIGHT * 0.022,
     borderRadius: 60,
-    marginHorizontal: 25,
+    marginHorizontal: HEIGHT * 0.05,
   },
 
   customButtonText: {

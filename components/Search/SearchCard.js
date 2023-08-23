@@ -5,6 +5,7 @@ import Input from "../Input";
 import HorizontalLineWithIcon from "../HorizontalLineWithIcon";
 import { useNavigation } from "@react-navigation/native";
 import GoNextButton from "../GoNextButton";
+import { HEIGHT } from "../../constants/constants";
 
 export default function SearchCard() {
   const navigation = useNavigation();
@@ -33,7 +34,7 @@ export default function SearchCard() {
         <HorizontalLineWithIcon
           iconProperties={{
             name: "compare-arrows",
-            size: 34,
+            size: HEIGHT * 0.045,
             color: "#7b7b7b",
           }}
         />
@@ -44,7 +45,7 @@ export default function SearchCard() {
           addRight="true"
           rightIconProperties={{
             name: "calendar",
-            size: 18,
+            size: HEIGHT * 0.023,
             color: "#e2dfdf",
           }}
         />
@@ -77,9 +78,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
     borderRadius: 30,
-    marginHorizontal: 30,
-    marginTop: 30,
-    padding: 25,
+    marginHorizontal: HEIGHT * 0.04,
+    marginTop: HEIGHT * 0.04,
+    padding: HEIGHT * 0.033,
   },
 
   buttonsContainer: {
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
 
   oneWayButtonText: {
     color: "white",
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     fontWeight: "700",
   },
 
@@ -108,17 +109,17 @@ const styles = StyleSheet.create({
 
   roundTripButtonText: {
     color: "#7b7b7b",
-    fontSize: 12,
+    fontSize: HEIGHT * 0.0162,
     fontWeight: "700",
   },
 
   inputsContainer: {
-    marginTop: 25,
+    marginTop: HEIGHT * 0.032,
   },
 
   IconContainer: {
-    width: 24,
-    height: 24,
+    width: HEIGHT * 0.031,
+    height: HEIGHT * 0.031,
     marginRight: 10,
     backgroundColor: "#f5f4f4",
     borderRadius: 20,

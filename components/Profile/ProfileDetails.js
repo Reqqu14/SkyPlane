@@ -5,6 +5,8 @@ import Button from "../../components/Button";
 import DropdownComponent from "../../components/DropdownComponent";
 import { storeData } from "../../store/asyncStorage/asyncStorage";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { HEIGHT } from "../../constants/constants";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function ProfileDetails({ profileData }) {
   const navigation = useNavigation();
@@ -103,7 +105,7 @@ export default function ProfileDetails({ profileData }) {
 
   return (
     <View style={styles.container}>
-      <View>
+      <ScrollView>
         <View style={styles.imageContainer}>
           <View style={styles.imageView}>
             <Image
@@ -167,7 +169,7 @@ export default function ProfileDetails({ profileData }) {
             Save
           </Button>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -176,33 +178,33 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 20,
+    padding: HEIGHT * 0.025,
     marginHorizontal: 20,
   },
 
   imageContainer: {
-    marginBottom: 20,
+    marginBottom: HEIGHT * 0.02,
     alignItems: "center",
   },
 
   imageView: {
-    width: 150,
-    height: 150,
+    width: HEIGHT * 0.19,
+    height: HEIGHT * 0.19,
     backgroundColor: "yellow",
-    borderRadius: 75,
-    elevation: 25,
+    borderRadius: (HEIGHT * 0.19) / 2,
+    elevation: 5,
   },
 
   image: {
-    width: 150,
-    height: 150,
+    width: HEIGHT * 0.19,
+    height: HEIGHT * 0.19,
     borderRadius: 75,
     borderWidth: 0.5,
     borderColor: "black",
   },
 
   button: {
-    marginTop: 35,
+    marginTop: HEIGHT * 0.025,
   },
 
   buttonCustomStyle: {

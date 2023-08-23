@@ -5,6 +5,7 @@ import IconButton from "../../components/IconButton";
 import Topic from "../../components/ReusableScreenComponents/Topic";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import { getData } from "../../store/asyncStorage/asyncStorage";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Profile() {
   const [profileData, setProfileData] = useState(null);
@@ -19,7 +20,7 @@ export default function Profile() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <Topic>Profile</Topic>
       <View style={styles.profileDataContainer}>
         <ProfileDetails profileData={profileData} />
@@ -29,14 +30,8 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 20,
-    marginHorizontal: 20,
-  },
-
   profileDataContainer: {
-    marginTop: 20,
+    marginTop: HEIGHT * 0.026,
+    marginBottom: 60,
   },
 });

@@ -3,6 +3,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import { HEIGHT, WIDTH } from "../../constants/constants";
 
 export default function CountriesView({ route }) {
   const cities = useSelector((state) => {
@@ -41,17 +42,18 @@ export default function CountriesView({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 35,
+    marginTop: HEIGHT * 0.045,
     alignItems: "center",
-    marginBottom: 25,
+    marginBottom: HEIGHT * 0.02,
   },
   image: {
-    width: 166,
-    height: 126,
+    width: WIDTH * 0.435,
+    height: HEIGHT * 0.163,
     borderRadius: 20,
   },
 
   city: {
+    fontSize: HEIGHT * 0.02,
     marginTop: 10,
     textAlign: "center",
     color: "#222222",

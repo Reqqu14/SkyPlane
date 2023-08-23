@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import CountriesView from "./CountriesView";
+import { HEIGHT } from "../../constants/constants";
 
 const TopNavigation = createMaterialTopTabNavigator();
 
@@ -11,7 +12,7 @@ function TopBarNavigation() {
       screenOptions={{
         tabBarStyle: {
           borderRadius: 60,
-          marginTop: 40,
+          marginTop: HEIGHT * 0.052,
           backgroundColor: "#f4f4f4",
           elevation: 0,
         },
@@ -19,7 +20,7 @@ function TopBarNavigation() {
           fontWeight: "600",
           textTransform: "capitalize",
           marginHorizontal: 0,
-          fontSize: 15,
+          fontSize: HEIGHT * 0.02,
         },
         tabBarItemStyle: {
           paddingHorizontal: 0,
@@ -31,8 +32,8 @@ function TopBarNavigation() {
         },
 
         tabBarIndicatorContainerStyle: {
-          marginLeft: 15,
-          paddingHorizontal: 50,
+          marginLeft: HEIGHT * 0.02,
+          paddingHorizontal: HEIGHT * 0.04,
         },
 
         tabBarActiveTintColor: "#009688",

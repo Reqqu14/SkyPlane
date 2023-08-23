@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Topic({ children }) {
   return (
@@ -9,7 +10,11 @@ export default function Topic({ children }) {
         <Text style={styles.text}>{children}</Text>
       </View>
       <View style={styles.iconContainer}>
-        <Ionicons name="notifications-sharp" size={26} color="gray" />
+        <Ionicons
+          name="notifications-sharp"
+          size={HEIGHT * 0.034}
+          color="gray"
+        />
       </View>
     </View>
   );
@@ -17,7 +22,7 @@ export default function Topic({ children }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginTop: HEIGHT * 0.055,
     flexDirection: "row",
   },
 
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#7b7b7b",
     fontWeight: "500",
-    fontSize: 22,
+    fontSize: HEIGHT * 0.028,
   },
 
   iconContainer: {

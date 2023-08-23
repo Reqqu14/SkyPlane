@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import React from "react";
+import { HEIGHT } from "../constants/constants";
 
 export default function CustomTextInput({ label, textInputConfig, invalid }) {
   return (
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#f9f3f3",
-    padding: 6,
+    padding: HEIGHT * 0.01,
     borderRadius: 6,
     fontSize: 16,
   },

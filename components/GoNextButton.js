@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import Button from "./Button";
+import { HEIGHT } from "../constants/constants";
 
 export default function GoNextButton({ children, onPress }) {
   return (
@@ -18,18 +19,18 @@ export default function GoNextButton({ children, onPress }) {
 
 const styles = StyleSheet.create({
   searchButtonContainer: {
-    marginTop: 40,
+    marginTop: HEIGHT * 0.052,
   },
 
   buttonCustomStyle: {
     backgroundColor: "black",
-    padding: 15,
+    padding: HEIGHT * 0.02,
     borderRadius: 60,
   },
 
   customButtonText: {
     fontWeight: "500",
     color: "white",
-    fontSize: 16,
+    fontSize: HEIGHT * 0.021,
   },
 });

@@ -5,6 +5,8 @@ import IconButton from "../components/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import { getCityById } from "../store/redux/cities";
 import GoNextButton from "../components/GoNextButton";
+import { HEIGHT } from "../constants/constants";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function CityDetails({ route }) {
   const navigation = useNavigation();
@@ -49,68 +51,70 @@ export default function CityDetails({ route }) {
 
   return selectedCity != null ? (
     <View style={styles.container}>
-      <Image source={selectedCity.Image} style={styles.image}></Image>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.cityName}>{selectedCity.Name}</Text>
-        <View style={styles.detailRowContainer}>
-          <View style={styles.detail}>
-            <Text style={styles.detailHeader}>Country</Text>
-            <Text style={styles.details}>{selectedCity.Country}</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Image source={selectedCity.Image} style={styles.image}></Image>
+        <View style={styles.detailsContainer}>
+          <Text style={styles.cityName}>{selectedCity.Name}</Text>
+          <View style={styles.detailRowContainer}>
+            <View style={styles.detail}>
+              <Text style={styles.detailHeader}>Country</Text>
+              <Text style={styles.details}>{selectedCity.Country}</Text>
+            </View>
+            <View style={styles.detail}>
+              <Text style={styles.detailHeader}>Population</Text>
+              <Text style={styles.details}>{selectedCity.Population}</Text>
+            </View>
           </View>
-          <View style={styles.detail}>
-            <Text style={styles.detailHeader}>Population</Text>
-            <Text style={styles.details}>{selectedCity.Population}</Text>
+          <View style={styles.detailRowContainer}>
+            <View style={styles.detail}>
+              <Text style={styles.detailHeader}>Airport</Text>
+              <Text style={styles.details}>{selectedCity.AirportFullName}</Text>
+            </View>
+            <View style={styles.detail}>
+              <Text style={styles.detailHeader}>City distance</Text>
+              <Text style={styles.details}>{selectedCity.CityDistance}</Text>
+            </View>
+          </View>
+          <View style={styles.detailRowContainer}>
+            <View style={styles.detail}>
+              <Text style={styles.detailHeader}>From</Text>
+              <Text style={styles.details}>{selectedCity.From} $</Text>
+            </View>
+            <View style={styles.detail}>
+              <Text style={styles.detailHeader}>To</Text>
+              <Text style={styles.details}>{selectedCity.To} $</Text>
+            </View>
           </View>
         </View>
-        <View style={styles.detailRowContainer}>
-          <View style={styles.detail}>
-            <Text style={styles.detailHeader}>Airport</Text>
-            <Text style={styles.details}>{selectedCity.AirportFullName}</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.detailHeader}>City distance</Text>
-            <Text style={styles.details}>{selectedCity.CityDistance}</Text>
-          </View>
-        </View>
-        <View style={styles.detailRowContainer}>
-          <View style={styles.detail}>
-            <Text style={styles.detailHeader}>From</Text>
-            <Text style={styles.details}>{selectedCity.From} $</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.detailHeader}>To</Text>
-            <Text style={styles.details}>{selectedCity.To} $</Text>
-          </View>
-        </View>
-      </View>
-      <GoNextButton onPress={goToNextPage}>See flights</GoNextButton>
+        <GoNextButton onPress={goToNextPage}>See flights</GoNextButton>
+      </ScrollView>
     </View>
   ) : null;
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
-    paddingHorizontal: 20,
+    marginTop: HEIGHT * 0.013,
+    paddingHorizontal: HEIGHT * 0.026,
   },
 
   image: {
     width: "100%",
-    height: "45%",
+    height: HEIGHT * 0.4,
     borderRadius: 20,
   },
 
   cityName: {
-    fontSize: 24,
+    fontSize: HEIGHT * 0.03,
     fontWeight: "600",
-    marginBottom: 15,
+    marginBottom: HEIGHT * 0.02,
   },
 
   detailsContainer: {
     alignItems: "center",
     backgroundColor: "white",
-    padding: 15,
-    marginTop: 20,
+    padding: HEIGHT * 0.02,
+    marginTop: HEIGHT * 0.026,
     borderRadius: 20,
   },
 
@@ -121,16 +125,16 @@ const styles = StyleSheet.create({
 
   detailRowContainer: {
     flexDirection: "row",
-    marginBottom: 10,
+    marginBottom: HEIGHT * 0.013,
   },
 
   detailHeader: {
-    fontSize: 13,
+    fontSize: HEIGHT * 0.017,
     color: "#7b7b7b",
   },
 
   details: {
-    fontSize: 16,
+    fontSize: HEIGHT * 0.021,
     fontWeight: "600",
     marginTop: 5,
   },
