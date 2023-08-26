@@ -1,7 +1,6 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
-import IconButton from "../../components/IconButton";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
 import Topic from "../../components/ReusableScreenComponents/Topic";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import { getData } from "../../store/asyncStorage/asyncStorage";

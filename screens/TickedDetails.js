@@ -5,8 +5,10 @@ import IconButton from "../components/IconButton";
 import Card from "../components/TicketDetails/Card";
 import { HEIGHT } from "../constants/constants";
 
-export default function TickedDetails() {
+export default function TickedDetails({ route }) {
   const navigation = useNavigation();
+  const flightData = route.params.flightData;
+  const seat = route.params.seat;
 
   function goBack() {
     navigation.goBack();
@@ -32,7 +34,12 @@ export default function TickedDetails() {
 
   return (
     <View style={styles.container}>
-      <Card />
+      <Card
+        airport={flightData.airport}
+        destination={flightData.destination}
+        date={flightData.flightDate.date}
+        seat={seat}
+      />
     </View>
   );
 }

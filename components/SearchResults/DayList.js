@@ -31,6 +31,7 @@ export default function DayList({ setSelectedDay }) {
       const currentDate = new Date(today);
       currentDate.setDate(today.getDate() + i);
       const day = {
+        date: currentDate.toString(),
         day: currentDate.getDate(),
         dayOfWeek: currentDate
           .toLocaleString("en-US", {

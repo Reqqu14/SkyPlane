@@ -13,7 +13,7 @@ const airportSlice = createSlice({
       { label: "Chicago Airport", value: "CHI" },
       { label: "San Francisco Airport", value: "SFA" },
       { label: "Pekin Airport", value: "PAI" },
-      { label: "Tokyo Airport", value: "TAI" },
+      { label: "Tokyo Airport", value: "TAK" },
     ],
     selectedAirport: {},
     destinationAirport: {},

@@ -1,16 +1,40 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import Input from "../Input";
 import HorizontalLineWithIcon from "../HorizontalLineWithIcon";
 import { useNavigation } from "@react-navigation/native";
 import GoNextButton from "../GoNextButton";
 import { HEIGHT } from "../../constants/constants";
+import { getFormatedActualDate } from "../../helpers/helpers";
+import { getData } from "../../store/asyncStorage/asyncStorage";
+import { useDispatch, useSelector } from "react-redux";
+import { getAirportByCode } from "../../store/redux/airports";
 
 export default function SearchCard() {
+  const [profileData, setProfileData] = useState(null);
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getProfileData();
+    dispatch(getAirportByCode({ code: profileData?.airport, type: "airport" }));
+  }, []);
+
+  async function getProfileData() {
+    const profileData = await getData("profile");
+    setProfileData(JSON.parse(profileData));
+  }
+
+  const airportdata = useSelector((state) => state.airportData.selectedAirport);
+
   function GoToSearchResults() {
-    navigation.navigate("SearchResult", { destinationAirport: "BER" });
+    navigation.navigate("SearchResult", {
+      destinationAirport: "MAL",
+      cheapest: 120,
+      premium: 1356,
+    });
   }
 
   return (
@@ -30,7 +54,7 @@ export default function SearchCard() {
         </Button>
       </View>
       <View style={styles.inputsContainer}>
-        <Input label="From" text="London (all)" />
+        <Input label="From" text={airportdata?.label} />
         <HorizontalLineWithIcon
           iconProperties={{
             name: "compare-arrows",
@@ -38,10 +62,10 @@ export default function SearchCard() {
             color: "#7b7b7b",
           }}
         />
-        <Input label="To" text="Berlin" />
+        <Input label="To" text="Mallorca" />
         <Input
           label="Date"
-          text="16 Sep 2022"
+          text={getFormatedActualDate()}
           addRight="true"
           rightIconProperties={{
             name: "calendar",

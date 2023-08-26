@@ -16,28 +16,13 @@ export default function PurchaseOverview() {
     return state.flightDetailsData.flightDetails;
   });
 
-  function goBack() {
-    navigation.goBack();
-  }
-
   function goToNextPage() {
     navigation.navigate("Wallet");
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => {
-        return (
-          <IconButton
-            onPress={goBack}
-            iconOptions={{
-              name: "chevron-left",
-              size: HEIGHT * 0.036,
-              color: "#7b7b7b",
-            }}
-          />
-        );
-      },
+      headerLeft: null,
       headerTitle: "Your flight to Berlin",
     });
   });
@@ -45,6 +30,14 @@ export default function PurchaseOverview() {
   useEffect(() => {
     setFlightDetails(flightData);
   }, []);
+
+  function Details({ seat }) {
+    return (
+      <View style={styles.detailsContainer}>
+        <PassengerDetails seat={seat} date={flightData.flightDate.date} />
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -59,12 +52,9 @@ export default function PurchaseOverview() {
           flightDate={flightData.flightDate}
         />
       </View>
-      <View style={styles.detailsContainer}>
-        <PassengerDetails />
-      </View>
-      <View style={styles.detailsContainer}>
-        <PassengerDetails />
-      </View>
+      {flightData.seats.map((row) => {
+        return <Details key={row} seat={row} />;
+      })}
       <View style={styles.goNextButtonContainer}>
         <GoNextButton onPress={goToNextPage}>Go to Wallet</GoNextButton>
       </View>

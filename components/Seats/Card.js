@@ -5,9 +5,8 @@ import { FlatList } from "react-native-gesture-handler";
 import Seat from "./Seat";
 import { HEIGHT } from "../../constants/constants";
 
-export default function Card() {
+export default function Card({ selectedSeatsHandler }) {
   const [selectedSeats, setSelectedSeats] = useState([]);
-
   const data = {
     planeRows: [
       {
@@ -160,12 +159,14 @@ export default function Card() {
       setSelectedSeats((prevSelectedSeats) => [
         ...prevSelectedSeats.filter((x) => x !== item.id),
       ]);
+      selectedSeatsHandler(item.id);
       return;
     }
 
     if (!item.reserved && item.available) {
       item.selected = true;
       setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, item.id]);
+      selectedSeatsHandler(item.id, true);
     }
   }
 

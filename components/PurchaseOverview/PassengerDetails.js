@@ -1,8 +1,24 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HEIGHT } from "../../constants/constants";
+import { formatDate } from "../../helpers/helpers";
 
-export default function PassengerDetails() {
+export default function PassengerDetails({ seat, date }) {
+  const [formattedDate, setFormattedDate] = useState();
+
+  useEffect(() => {
+    setFormattedDate(formatDate(date));
+  }, []);
+
+  // function formatDate() {
+  //   const dateObject = new Date(date);
+  //   const day = String(dateObject.getDate()).padStart(2, "0");
+  //   const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+  //   const year = dateObject.getFullYear();
+
+  //   setFormattedDate(`${day}/${month}/${year}`);
+  // }
+
   return (
     <View>
       <View>
@@ -16,13 +32,13 @@ export default function PassengerDetails() {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.header}>Seat</Text>
-            <Text style={styles.headerText}>B3</Text>
+            <Text style={styles.headerText}>{seat}</Text>
           </View>
         </View>
         <View style={styles.detailsContainer}>
           <View style={{ flex: 1 }}>
             <Text style={styles.header}>Date</Text>
-            <Text style={styles.headerText}>16/9/2023</Text>
+            <Text style={styles.headerText}>{formattedDate}</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.header}>Gate</Text>

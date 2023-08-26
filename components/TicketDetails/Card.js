@@ -1,8 +1,39 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HEIGHT } from "../../constants/constants";
+import { formatDate } from "../../helpers/helpers";
+import { useDispatch, useSelector } from "react-redux";
+import { getAirportByCode } from "../../store/redux/airports";
+import { getData } from "../../store/asyncStorage/asyncStorage";
 
-export default function Card() {
+export default function Card({ airport, destination, seat, date }) {
+  const [formattedDate, setFormattedDate] = useState();
+  const [profileData, setProfileData] = useState(null);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setFormattedDate(formatDate(date));
+    getProfileData();
+  }, []);
+
+  useEffect(() => {
+    dispatch(getAirportByCode({ code: airport, type: "airport" }));
+    dispatch(
+      getAirportByCode({ code: destination, type: "destinationAirport" })
+    );
+  }, []);
+
+  const airportdata = useSelector((state) => state.airportData.selectedAirport);
+  const destinationAirportData = useSelector(
+    (state) => state.airportData.destinationAirport
+  );
+
+  async function getProfileData() {
+    const profileData = await getData("profile");
+    setProfileData(JSON.parse(profileData));
+  }
+
   return (
     <View>
       <View style={styles.headerContainer}>
@@ -26,26 +57,28 @@ export default function Card() {
       <View>
         <View style={styles.destinationContainer}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.header}>London Gatwick</Text>
-            <Text style={styles.headerText}>LGW</Text>
+            <Text style={styles.header}>{airportdata?.label}</Text>
+            <Text style={styles.headerText}>{airport}</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={styles.header}>Berlin Brendenburg</Text>
-            <Text style={styles.headerText}>BER</Text>
+            <Text style={styles.header}>{destinationAirportData?.label}</Text>
+            <Text style={styles.headerText}>{destination}</Text>
           </View>
         </View>
         <View style={styles.detailsContainer}>
           <View style={{ flex: 1 }}>
             <Text style={styles.header}>Passenger</Text>
-            <Text style={styles.headerText}>A/SUMMER</Text>
+            <Text style={styles.headerText}>
+              {profileData?.name} {profileData?.surname}
+            </Text>
           </View>
           <View style={{ flex: 1, alignItems: "center" }}>
             <Text style={styles.header}>Seat</Text>
-            <Text style={styles.headerText}>C</Text>
+            <Text style={styles.headerText}>{seat}</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.header}>Date</Text>
-            <Text style={styles.headerText}>16/9/2023</Text>
+            <Text style={styles.headerText}>{formattedDate}</Text>
           </View>
         </View>
         <View style={styles.detailsContainer}>
