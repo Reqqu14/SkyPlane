@@ -33,7 +33,7 @@ export default function CityDetails({ route }) {
             onPress={goBack}
             iconOptions={{
               name: "chevron-left",
-              size: 28,
+              size: HEIGHT * 0.036,
               color: "#7b7b7b",
             }}
           />

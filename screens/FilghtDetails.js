@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import GoNextButton from "../components/GoNextButton";
 import { useDispatch } from "react-redux";
 import { setDetails } from "../store/redux/flightDetails";
+import { HEIGHT } from "../constants/constants";
 
 export default function FilghtDetails({ route }) {
   const navigation = useNavigation();
@@ -47,7 +48,7 @@ export default function FilghtDetails({ route }) {
             onPress={goBack}
             iconOptions={{
               name: "chevron-left",
-              size: 28,
+              size: HEIGHT * 0.036,
               color: "#7b7b7b",
             }}
           />
@@ -94,27 +95,27 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 20,
-    marginHorizontal: 20,
-    marginTop: 30,
+    padding: HEIGHT * 0.026,
+    marginHorizontal: HEIGHT * 0.026,
+    marginTop: HEIGHT * 0.03,
   },
 
   text: {
-    fontSize: 16,
+    fontSize: HEIGHT * 0.021,
     fontWeight: "600",
     color: "#222222",
-    marginBottom: 25,
+    marginBottom: HEIGHT * 0.033,
   },
 
   buttonsContainer: {
     flexDirection: "row",
-    marginTop: 30,
+    marginTop: HEIGHT * 0.03,
     justifyContent: "space-between",
   },
 
   buttonStyle: {
-    padding: 15,
-    paddingHorizontal: 25,
+    padding: HEIGHT * 0.02,
+    paddingHorizontal: HEIGHT < 650 ? HEIGHT * 0.06 : HEIGHT * 0.032,
     borderRadius: 60,
     borderWidth: 1,
     borderColor: "#f4f4f4",
@@ -122,12 +123,12 @@ const styles = StyleSheet.create({
 
   customButtonText: {
     color: "#222222",
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     textTransform: "uppercase",
     fontWeight: "bold",
   },
 
   goNextButtonContainer: {
-    marginTop: 120,
+    marginTop: HEIGHT * 0.13,
   },
 });

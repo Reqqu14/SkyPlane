@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Topic({ destination, airport }) {
   return (
@@ -13,7 +14,7 @@ export default function Topic({ destination, airport }) {
 
 const styles = StyleSheet.create({
   topic: {
-    fontSize: 32,
+    fontSize: HEIGHT * 0.04,
     fontWeight: "600",
     color: "#222222",
   },

@@ -7,6 +7,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import SeatsLegend from "../components/Seats/SeatsLegend";
 import Card from "../components/Seats/Card";
 import GoNextButton from "../components/GoNextButton";
+import { HEIGHT } from "../constants/constants";
 
 export default function Seats() {
   const navigation = useNavigation();
@@ -27,7 +28,7 @@ export default function Seats() {
             onPress={goBack}
             iconOptions={{
               name: "chevron-left",
-              size: 28,
+              size: HEIGHT * 0.036,
               color: "#7b7b7b",
             }}
           />
@@ -60,16 +61,14 @@ export default function Seats() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    paddingHorizontal: 30,
+    padding: HEIGHT * 0.026,
+    paddingHorizontal: HEIGHT * 0.039,
   },
 
   cardContainer: {
     backgroundColor: "white",
     borderRadius: 16,
-    padding: 20,
-    marginTop: 25,
+    padding: HEIGHT * 0.026,
+    marginTop: HEIGHT * 0.032,
   },
-
-  goNextButtonContainer: {},
 });

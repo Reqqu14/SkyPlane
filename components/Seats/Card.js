@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Button from "../Button";
 import { FlatList } from "react-native-gesture-handler";
 import Seat from "./Seat";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Card() {
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -188,7 +189,10 @@ export default function Card() {
   return (
     <View>
       <View style={styles.detailsContainer}>
-        <Image source={require("../../assets/images/logo.png")} />
+        <Image
+          source={require("../../assets/images/logo.png")}
+          style={styles.image}
+        />
         <Text style={styles.airlineText}>Uizard Airlines</Text>
         <Text style={styles.dateText}>Friday 16th, September, 2022</Text>
       </View>
@@ -214,19 +218,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  image: {
+    width: HEIGHT * 0.046,
+    height: HEIGHT * 0.046,
+  },
+
   airlineText: {
     color: "#222222",
-    marginTop: 10,
+    marginTop: HEIGHT * 0.013,
+    fontSize: HEIGHT * 0.018,
   },
 
   dateText: {
     color: "#7b7b7b",
     fontWeight: "500",
-    marginTop: 10,
+    fontSize: HEIGHT * 0.018,
+    marginTop: HEIGHT * 0.013,
   },
 
   buttonContainer: {
-    marginVertical: 20,
+    marginVertical: HEIGHT * 0.026,
     alignItems: "center",
   },
 
@@ -234,12 +245,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#009688",
     padding: 3,
     borderRadius: 60,
-    width: 70,
+    width: HEIGHT * 0.09,
   },
 
   customButtonText: {
     color: "white",
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     textTransform: "uppercase",
     fontWeight: "bold",
   },
@@ -254,8 +265,8 @@ const styles = StyleSheet.create({
   },
 
   seat: {
-    width: 40,
-    height: 40,
+    width: HEIGHT < 650 ? HEIGHT * 0.075 : HEIGHT * 0.06,
+    height: HEIGHT < 650 ? HEIGHT * 0.06 : HEIGHT * 0.06,
   },
 
   seatAvailable: {

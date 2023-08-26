@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Seat from "./Seat";
+import { HEIGHT } from "../../constants/constants";
 
 export default function SeatsLegend() {
   return (
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
+    fontSize: HEIGHT * 0.018,
     color: "#7b7b7b",
     fontWeight: "600",
   },

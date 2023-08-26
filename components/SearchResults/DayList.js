@@ -4,12 +4,11 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { Entypo } from "@expo/vector-icons";
-import { current } from "@reduxjs/toolkit";
+import { HEIGHT } from "../../constants/constants";
 
 export default function DayList({ setSelectedDay }) {
   const lastIndexToLoad = 5;
@@ -120,18 +119,18 @@ export default function DayList({ setSelectedDay }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
-    height: 100,
+    marginTop: HEIGHT * 0.02,
+    height: HEIGHT * 0.135,
   },
 
   itemContainer: {
     backgroundColor: "white",
-    borderRadius: 15,
-    paddingVertical: 15,
+    borderRadius: HEIGHT * 0.02,
+    paddingVertical: HEIGHT * 0.02,
     marginRight: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: HEIGHT * 0.02,
     alignItems: "center",
-    minWidth: 60,
+    minWidth: HEIGHT * 0.079,
   },
 
   selectedDay: {
@@ -140,7 +139,7 @@ const styles = StyleSheet.create({
   },
 
   itemText: {
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     fontWeight: "bold",
   },
 

@@ -7,6 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import PassengerDetails from "../components/PurchaseOverview/PassengerDetails";
 import GoNextButton from "../components/GoNextButton";
 import { useSelector } from "react-redux";
+import { HEIGHT } from "../constants/constants";
 
 export default function PurchaseOverview() {
   const navigation = useNavigation();
@@ -31,7 +32,7 @@ export default function PurchaseOverview() {
             onPress={goBack}
             iconOptions={{
               name: "chevron-left",
-              size: 28,
+              size: HEIGHT * 0.036,
               color: "#7b7b7b",
             }}
           />
@@ -73,17 +74,17 @@ export default function PurchaseOverview() {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
+    marginHorizontal: HEIGHT * 0.026,
   },
 
   detailsContainer: {
-    borderRadius: 20,
-    marginTop: 30,
-    padding: 20,
+    borderRadius: HEIGHT * 0.026,
+    marginTop: HEIGHT * 0.039,
+    padding: HEIGHT * 0.026,
     backgroundColor: "white",
   },
 
   goNextButtonContainer: {
-    marginVertical: 30,
+    marginVertical: HEIGHT * 0.039,
   },
 });

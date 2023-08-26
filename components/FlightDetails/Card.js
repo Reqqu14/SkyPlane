@@ -4,6 +4,7 @@ import { Entypo } from "@expo/vector-icons";
 import { getAirportByCode } from "../../store/redux/airports";
 import Button from "../Button";
 import { useDispatch, useSelector } from "react-redux";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Card({
   backgroundColor,
@@ -38,7 +39,10 @@ export default function Card({
           </Text>
         </View>
         <View>
-          <Image source={require("../../assets/images/logo.png")} />
+          <Image
+            source={require("../../assets/images/logo.png")}
+            style={styles.iconImage}
+          />
         </View>
       </View>
       <View style={styles.airportContainer}>
@@ -58,7 +62,7 @@ export default function Card({
           <Text style={styles.timeText}>1:00 PM</Text>
           <Entypo
             name="arrow-right"
-            size={20}
+            size={HEIGHT * 0.026}
             color="#222222"
             style={styles.image}
           />
@@ -79,7 +83,7 @@ export default function Card({
             {ticketType}
           </Button>
         </View>
-        <View style={styles.test}>
+        <View style={styles.price}>
           <Text style={styles.priceText}>{price} $</Text>
         </View>
       </View>
@@ -90,25 +94,30 @@ export default function Card({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 16,
-    padding: 20,
+    padding: HEIGHT * 0.026,
   },
 
   flightInformationContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 25,
+    marginBottom: HEIGHT * 0.032,
   },
 
   topicText: {
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     fontWeight: "600",
     color: "#222222",
     marginBottom: 5,
   },
 
   flightDestinationText: {
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     color: "#7b7b7b",
+  },
+
+  iconImage: {
+    width: HEIGHT * 0.04,
+    height: HEIGHT * 0.04,
   },
 
   airportContainer: {
@@ -117,12 +126,12 @@ const styles = StyleSheet.create({
   },
 
   airportFullText: {
-    fontSize: 13,
+    fontSize: HEIGHT * 0.017,
     color: "#7b7b7b",
   },
 
   airportShortText: {
-    fontSize: 24,
+    fontSize: HEIGHT * 0.031,
     fontWeight: "600",
     color: "#222222",
   },
@@ -130,7 +139,7 @@ const styles = StyleSheet.create({
   timeDetailsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: HEIGHT * 0.019,
     justifyContent: "space-around",
   },
 
@@ -141,17 +150,17 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    marginLeft: 25,
+    marginLeft: HEIGHT * 0.032,
   },
 
   timeText: {
-    fontSize: 16,
+    fontSize: HEIGHT * 0.021,
     fontWeight: "600",
     color: "#222222",
   },
 
   footerContainer: {
-    marginTop: 30,
+    marginTop: HEIGHT * 0.039,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -160,23 +169,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#009688",
     padding: 3,
     borderRadius: 60,
-    width: 80,
+    width: HEIGHT * 0.103,
   },
 
   customButtonText: {
     color: "white",
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     textTransform: "uppercase",
     fontWeight: "bold",
   },
 
   priceText: {
-    fontSize: 24,
+    fontSize: HEIGHT * 0.031,
     fontWeight: "600",
     color: "#222222",
   },
 
-  test: {
+  price: {
     flex: 1,
   },
 });

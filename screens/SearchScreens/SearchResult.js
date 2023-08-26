@@ -8,6 +8,7 @@ import Card from "../../components/SearchResults/Card";
 import GoNextButton from "../../components/GoNextButton";
 import { ScrollView } from "react-native-gesture-handler";
 import { getData } from "../../store/asyncStorage/asyncStorage";
+import { HEIGHT } from "../../constants/constants";
 
 export default function SearchResult({ route }) {
   const { destinationAirport, cheapest, premium } = route.params;
@@ -42,7 +43,7 @@ export default function SearchResult({ route }) {
             onPress={GoBack}
             iconOptions={{
               name: "chevron-left",
-              size: 28,
+              size: HEIGHT * 0.036,
               color: "#7b7b7b",
             }}
           />
@@ -118,13 +119,13 @@ export default function SearchResult({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    paddingHorizontal: 30,
+    padding: HEIGHT * 0.025,
+    paddingHorizontal: HEIGHT * 0.039,
   },
 
   text: {
-    marginTop: 15,
-    fontSize: 18,
+    marginTop: HEIGHT * 0.02,
+    fontSize: HEIGHT * 0.023,
     fontWeight: "600",
     color: "#222222",
   },
@@ -133,20 +134,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#898989",
     padding: 4,
     borderRadius: 60,
-    width: 90,
+    width: HEIGHT * 0.116,
   },
 
   popularButtonStyle: {
     backgroundColor: "#009688",
     padding: 4,
     borderRadius: 60,
-    width: 90,
+    width: HEIGHT * 0.116,
   },
 
   premiumButtonStyle: {
     backgroundColor: "#ffc125",
     padding: 4,
     borderRadius: 60,
-    width: 90,
+    width: HEIGHT * 0.116,
   },
 });

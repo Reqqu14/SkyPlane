@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Seat({ style, seatSelected, id }) {
   return (
@@ -11,11 +12,11 @@ export default function Seat({ style, seatSelected, id }) {
 
 const styles = StyleSheet.create({
   seat: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    marginBottom: 15,
-    marginHorizontal: 10,
+    width: HEIGHT * 0.041,
+    height: HEIGHT * 0.041,
+    borderRadius: HEIGHT * 0.016,
+    marginBottom: HEIGHT * 0.019,
+    marginHorizontal: HEIGHT * 0.013,
     justifyContent: "center",
   },
 

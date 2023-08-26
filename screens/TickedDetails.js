@@ -3,6 +3,7 @@ import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import IconButton from "../components/IconButton";
 import Card from "../components/TicketDetails/Card";
+import { HEIGHT } from "../constants/constants";
 
 export default function TickedDetails() {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ export default function TickedDetails() {
             onPress={goBack}
             iconOptions={{
               name: "chevron-left",
-              size: 28,
+              size: HEIGHT * 0.036,
               color: "#7b7b7b",
             }}
           />
@@ -38,10 +39,10 @@ export default function TickedDetails() {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
+    marginHorizontal: HEIGHT * 0.026,
     backgroundColor: "white",
-    borderRadius: 20,
-    marginTop: 30,
-    padding: 20,
+    borderRadius: HEIGHT * 0.026,
+    marginTop: HEIGHT * 0.039,
+    padding: HEIGHT * 0.026,
   },
 });

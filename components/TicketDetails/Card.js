@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Card() {
   return (
@@ -70,7 +71,7 @@ export default function Card() {
 
 const styles = StyleSheet.create({
   topic: {
-    fontSize: 20,
+    fontSize: HEIGHT * 0.026,
     fontWeight: "500",
   },
 
@@ -81,30 +82,30 @@ const styles = StyleSheet.create({
 
   destinationContainer: {
     flexDirection: "row",
-    marginVertical: 25,
+    marginVertical: HEIGHT * 0.032,
   },
 
   detailsContainer: {
     flexDirection: "row",
-    marginVertical: 15,
+    marginVertical: HEIGHT * 0.019,
   },
 
   header: {
     color: "#7b7b7b",
-    fontSize: 14,
+    fontSize: HEIGHT * 0.018,
     fontWeight: "600",
   },
 
   headerText: {
     color: "#222222",
-    fontSize: 16,
+    fontSize: HEIGHT * 0.021,
     fontWeight: "600",
   },
 
   barcodeContainer: {
     alignItems: "center",
-    marginVertical: 10,
-    marginTop: 50,
+    marginVertical: HEIGHT * 0.013,
+    marginTop: HEIGHT * 0.065,
   },
 
   barcode: {

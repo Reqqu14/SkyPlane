@@ -5,6 +5,7 @@ import Card from "../components/FlightDetails/Card";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import { HEIGHT } from "../constants/constants";
 
 export default function Wallet() {
   const navigation = useNavigation();
@@ -65,18 +66,18 @@ const styles = StyleSheet.create({
   },
 
   ticketsContainer: {
-    marginHorizontal: 30,
-    marginTop: 30,
+    marginHorizontal: HEIGHT * 0.039,
+    marginTop: HEIGHT * 0.039,
   },
 
   header: {
     color: "#222222",
-    fontSize: 16,
+    fontSize: HEIGHT * 0.021,
     fontWeight: "600",
   },
   detailsContainer: {
-    borderRadius: 20,
-    marginVertical: 30,
+    borderRadius: HEIGHT * 0.026,
+    marginVertical: HEIGHT * 0.039,
     backgroundColor: "white",
   },
 });

@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Button from "../Button";
 import { useNavigation } from "@react-navigation/native";
+import { HEIGHT } from "../../constants/constants";
 
 export default function Card({
   topButtonText,
@@ -43,7 +44,10 @@ export default function Card({
         </Button>
       </View>
       <View style={styles.iconContainer}>
-        <Image source={require("../../assets/images/logo.png")} />
+        <Image
+          source={require("../../assets/images/logo.png")}
+          style={styles.image}
+        />
       </View>
       <View style={styles.cardTopicsContainer}>
         <View>
@@ -81,13 +85,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     borderRadius: 10,
-    marginTop: 20,
-    padding: 10,
+    marginTop: HEIGHT * 0.026,
+    padding: HEIGHT * 0.013,
   },
 
   customButtonText: {
     color: "white",
-    fontSize: 12,
+    fontSize: HEIGHT * 0.015,
     textTransform: "uppercase",
     fontWeight: "bold",
   },
@@ -95,40 +99,46 @@ const styles = StyleSheet.create({
   buttonContainer: {
     position: "absolute",
     alignSelf: "baseline",
-    marginTop: -12,
-    marginLeft: 30,
+    marginTop: -HEIGHT * 0.015,
+    marginLeft: HEIGHT * 0.039,
   },
 
   iconContainer: {
     alignItems: "flex-end",
   },
 
+  image: {
+    width: HEIGHT * 0.046,
+    height: HEIGHT * 0.046,
+  },
+
   cardTopicsContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "flex-end",
-    marginBottom: 20,
-    marginTop: 10,
+    marginBottom: HEIGHT * 0.026,
+    marginTop: HEIGHT * 0.013,
   },
 
   price: {
-    fontSize: 24,
+    fontSize: HEIGHT * 0.031,
     fontWeight: "600",
     color: "#222222",
   },
 
   time: {
-    fontSize: 12,
+    fontSize: HEIGHT * 0.016,
     fontWeight: "600",
     color: "#7b7b7b",
   },
 
   detailsText: {
     color: "#222222",
+    fontSize: HEIGHT * 0.02,
   },
 
   details: {
-    marginBottom: 10,
+    marginBottom: HEIGHT * 0.013,
   },
 
   pressed: {
