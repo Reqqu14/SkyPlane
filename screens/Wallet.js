@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Topic from "../components/ReusableScreenComponents/Topic";
 import Card from "../components/FlightDetails/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { shallowEqual, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { HEIGHT } from "../constants/constants";
 
 export default function Wallet() {
@@ -24,9 +24,6 @@ export default function Wallet() {
     return state.flightDetailsData.flightDetails.seats;
   });
 
-  const memoizedFlightData = useMemo(() => flightData, []);
-  const memoizedSeatsData = useMemo(() => seatsData, []);
-
   function goToTicketDetails(seat) {
     navigation.navigate("TicketDetails", {
       flightData: flightData,
@@ -35,9 +32,9 @@ export default function Wallet() {
   }
 
   useEffect(() => {
-    setFlightDetails(memoizedFlightData);
-    setSeats(memoizedSeatsData);
-  }, [isFocused, memoizedFlightData, memoizedSeatsData]);
+    setFlightDetails(flightData);
+    setSeats(seatsData);
+  }, [isFocused]);
 
   useEffect(() => {}, [flightDetails]);
 
